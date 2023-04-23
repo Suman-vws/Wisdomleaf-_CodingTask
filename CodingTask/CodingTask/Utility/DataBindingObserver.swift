@@ -11,14 +11,20 @@ public enum ViewState<Response>{
     case loading
     case loaded(data: Response)
     case error(type: Any)
+    case none
 }
 
 class Observable<T> {
-    var bind: (T) -> () = { _ in }
+    private var listner: (T) -> () = { _ in }
+    
+    func bind(_ closure: @escaping (T) -> Void){
+        closure(value)
+        listner = closure
+    }
     
     var value: T {
         didSet {
-            bind(value)
+            listner(value)
         }
     }
     

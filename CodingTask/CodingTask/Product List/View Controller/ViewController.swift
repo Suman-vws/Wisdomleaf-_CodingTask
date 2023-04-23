@@ -8,7 +8,41 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    //MARK:  - - - - - Properties - - - -
+    var listDataViewModel: ListViewModel! {
+        didSet{
+            self.listDataViewModel.observableState.bind { [unowned self] (stateObj) in
+                self.observableState = stateObj
+            }
+        }
+    }
+    
+    private var observableState: ViewState<Any>? {
+        didSet{
+            guard let stateObject = observableState else { return }
+            switch stateObject {
+            case .loading:
+                self.view.showActivity()
+            case .loaded(data: let data):
+                self.view.hideActivity()
+                if let listData = data as? [Product], !listData.isEmpty{
+                    self.arrListData = listData
+                    self.tableView.reloadData()
+                }
+            case .error(type: _):
+                self.view.hideActivity()
+                //handle error if required
+            default:
+                break
+            }
+        }
+    }
+    
+    private let KProductListDataPageSize = 10
+    private var pageNumber = 1
+    private var arrListData: [Product] = []
+    
     @IBOutlet weak var tableView: UITableView!
     private let productCellReuseId = "ItemsTableViewCell"
     private let productCellNibName = "ItemsTableViewCell"
@@ -16,9 +50,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         self.navigationItem.title = "Products"
         configTableView()
+        
+        //setting up data binding
+        listDataViewModel = ListViewModel()
+        getProductsData()
     }
 
     private func configTableView(){
@@ -27,12 +64,16 @@ class ViewController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.register(UINib(nibName: productCellNibName, bundle: nil), forCellReuseIdentifier: productCellReuseId)
     }
+    
+    private func getProductsData(pageNo: Int = 1){
+        listDataViewModel.getProductsListData(pageNo: pageNo, pageSize: KProductListDataPageSize)
+    }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return arrListData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
