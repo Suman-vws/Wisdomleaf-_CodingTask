@@ -15,6 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if #available(iOS 13.0, *){
+            //do nothing
+        }else{
+            window = UIWindow(frame: UIScreen.main.bounds)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let navVC = storyboard.instantiateViewController(withIdentifier: "ListNavigationController")
+            window?.rootViewController = navVC
+            window?.makeKeyAndVisible()
+        }
         return true
     }
 
