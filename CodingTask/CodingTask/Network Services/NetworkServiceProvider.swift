@@ -27,7 +27,7 @@ public enum NetworkError : Error {
 
 
 class ListDataProvider {
-    typealias ProductListCompletionHandler = ((Result<[Product]?, Error>) -> ())
+    typealias ProductListCompletionHandler = ((Result<ProductListResult?, Error>) -> ())
     var listDataCompletionHandler: ProductListCompletionHandler?
     
     public typealias Parameters = [String:Any]
@@ -73,9 +73,7 @@ class ListDataProvider {
                 if let responseData = data {
                     do {
                         let response = try JSONDecoder().decode(ProductListResult.self, from: responseData)
-                        if let products = response.products, !products.isEmpty{
-                            self.listDataCompletionHandler?(.success(products))
-                        }
+                        self.listDataCompletionHandler?(.success(response))
                     } catch {
                         self.listDataCompletionHandler?(.failure(NetworkError.parsingError))
                     }

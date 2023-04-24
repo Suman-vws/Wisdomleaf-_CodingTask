@@ -11,6 +11,7 @@ class ListViewModel {
     
     var observableState: Observable<ViewState<Any>> = Observable(.none)
     private let productsListApiManager: ListDataProvider = ListDataProvider()
+    var totalItems: Int = 0
 
     func getProductsListData(pageNo: Int, pageSize: Int){
         self.observableState.value = .loading
@@ -25,9 +26,14 @@ class ListViewModel {
             }
             DispatchQueue.main.async {
                 switch result {
-                    case .success(let products):
-                    let arrProducts = self.transformProductsListDataIntoUIModelArray(products: products ?? [])
-                    self.observableState.value = .loaded(data: arrProducts)
+                    case .success(let response):
+                    if let products = response?.products, !products.isEmpty, let totalItems = response?.total{
+                        self.totalItems = totalItems
+                        let arrProducts = self.transformProductsListDataIntoUIModelArray(products: products)
+                        self.observableState.value = .loaded(data: arrProducts)
+                    }else{
+                        self.observableState.value = .error(type: NetworkError.custom(message: "No data available."))
+                    }
                     case .failure(let error):
                         self.observableState.value = .error(type: error)
                 }
