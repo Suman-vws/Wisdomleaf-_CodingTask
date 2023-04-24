@@ -96,17 +96,24 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+extension ViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrListData.count
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = arrListData[indexPath.item]
+        if selectedItem.isSelected{
+            if let description = selectedItem.description, !description.isEmpty{
+                DialogBoxPopupViewController.showPopup(parentVC: self, content: description)
+            }
+        }else{
+            showAlert()
+        }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: productCellReuseId, for: indexPath) as! ItemsTableViewCell
-        cell.updateItemCellWith(productModel: arrListData[indexPath.item])
-        cell.selectionStyle = .none
-        return cell
+    func showAlert(){
+        let alert = UIAlertController(title: "Hey!", message: "Unable to show the details.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: false)
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -126,5 +133,27 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             self.getProductsData(pageNo: self.pageNumber)
         }
     }
+}
+
+extension ViewController: UITableViewDataSource, ItemsTableCellDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrListData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: productCellReuseId, for: indexPath) as! ItemsTableViewCell
+        cell.cellDelegate = self
+        cell.updateItemCellWith(productModel: arrListData[indexPath.item])
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    func productItemSelectedAt(_ productCell: ItemsTableViewCell, productModel: ProductUIModel) {
+        guard let indexPath = tableView.indexPath(for: productCell) else { return }
+        arrListData[indexPath.item] = productModel
+//        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
 }
 

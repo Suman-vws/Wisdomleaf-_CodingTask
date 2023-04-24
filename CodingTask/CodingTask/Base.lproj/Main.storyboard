@@ -4,10 +4,19 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
+        </array>
+        <array key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -72,8 +81,74 @@
             </objects>
             <point key="canvasLocation" x="-355" y="706"/>
         </scene>
+        <!--Dialog Box Popup View Controller-->
+        <scene sceneID="xOu-kE-uxd">
+            <objects>
+                <viewController storyboardIdentifier="DialogBoxPopupViewController" id="vkg-xO-rQG" customClass="DialogBoxPopupViewController" customModule="CodingTask" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZBS-cZ-xdd">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YpG-qn-fHd">
+                                <rect key="frame" x="24" y="291" width="345" height="200"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDd-o6-DYY">
+                                        <rect key="frame" x="20" y="20" width="301" height="120"/>
+                                        <string key="text">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available</string>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
+                                        <color key="textColor" white="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mK-Sm-6oN">
+                                        <rect key="frame" x="260" y="156" width="61" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="38" id="aFi-Dr-gLV"/>
+                                            <constraint firstAttribute="width" constant="61" id="tAh-ZM-P5i"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="18"/>
+                                        <state key="normal" title="Okay">
+                                            <color key="titleColor" name="primaryBackground"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="okayButtonPressed:" destination="vkg-xO-rQG" eventType="touchUpInside" id="88e-3b-3ci"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="1mK-Sm-6oN" firstAttribute="trailing" secondItem="pDd-o6-DYY" secondAttribute="trailing" id="6qE-yK-bgl"/>
+                                    <constraint firstAttribute="bottom" secondItem="1mK-Sm-6oN" secondAttribute="bottom" constant="6" id="Ce8-Nt-nzf"/>
+                                    <constraint firstAttribute="trailing" secondItem="pDd-o6-DYY" secondAttribute="trailing" constant="24" id="D0K-VI-7tY"/>
+                                    <constraint firstAttribute="height" constant="200" id="Odk-wU-0pU"/>
+                                    <constraint firstItem="pDd-o6-DYY" firstAttribute="top" secondItem="YpG-qn-fHd" secondAttribute="top" constant="20" id="VUa-tN-heC"/>
+                                    <constraint firstItem="1mK-Sm-6oN" firstAttribute="top" secondItem="pDd-o6-DYY" secondAttribute="bottom" constant="16" id="eni-8j-Uls"/>
+                                    <constraint firstItem="pDd-o6-DYY" firstAttribute="leading" secondItem="YpG-qn-fHd" secondAttribute="leading" constant="20" id="sk9-Co-n0V"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Lhh-zs-W5h"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YpG-qn-fHd" firstAttribute="centerY" secondItem="ZBS-cZ-xdd" secondAttribute="centerY" constant="-35" id="2FC-y7-Hdy"/>
+                            <constraint firstItem="YpG-qn-fHd" firstAttribute="leading" secondItem="Lhh-zs-W5h" secondAttribute="leading" constant="24" id="Hc9-zS-OCg"/>
+                            <constraint firstItem="Lhh-zs-W5h" firstAttribute="trailing" secondItem="YpG-qn-fHd" secondAttribute="trailing" constant="24" id="XKE-0m-MlV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="pDd-o6-DYY" id="TeW-1J-0gR"/>
+                        <outlet property="dialogBoxView" destination="YpG-qn-fHd" id="O7Y-rM-FPU"/>
+                        <outlet property="okayButton" destination="1mK-Sm-6oN" id="eyy-9p-OEa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="59b-ta-FBc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1321" y="706"/>
+        </scene>
     </scenes>
     <resources>
+        <namedColor name="primaryBackground">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

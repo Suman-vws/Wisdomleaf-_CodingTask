@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMY-te-IYf" userLabel="Title Label">
-                        <rect key="frame" x="10" y="8" width="242" height="24"/>
+                        <rect key="frame" x="10" y="8" width="258" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="CS0-pz-g8n"/>
                         </constraints>
@@ -27,17 +27,21 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xT-fB-4FA" userLabel="Selection Button">
-                        <rect key="frame" x="266" y="5" width="40" height="30"/>
+                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xT-fB-4FA" userLabel="Selection Button">
+                        <rect key="frame" x="282" y="8" width="24" height="24"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="cTn-Oe-qgY"/>
-                            <constraint firstAttribute="width" constant="40" id="ecq-Eg-PG6"/>
+                            <constraint firstAttribute="height" constant="24" id="cTn-Oe-qgY"/>
+                            <constraint firstAttribute="width" constant="24" id="ecq-Eg-PG6"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                         <state key="normal" title="Button">
-                            <imageReference key="image" image="circle" catalog="system" symbolScale="default"/>
+                            <imageReference key="image" image="radio_off" symbolScale="default"/>
                         </state>
+                        <connections>
+                            <action selector="productItemSelectionChanged" destination="aeN-q1-wKF" eventType="touchUpInside" id="Hsx-Zf-g0M"/>
+                        </connections>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image" translatesAutoresizingMaskIntoConstraints="NO" id="aL5-p2-Zmi">
                         <rect key="frame" x="10" y="40" width="300" height="158"/>
@@ -59,7 +63,7 @@
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="vU8-GN-Kld"/>
                         </constraints>
                         <string key="text">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available</string>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -97,12 +101,13 @@
                 <outlet property="productDescriptionLabel" destination="njv-Qd-NGS" id="M9D-Sy-uLQ"/>
                 <outlet property="productImageView" destination="aL5-p2-Zmi" id="rcd-Vi-s1o"/>
                 <outlet property="productTitleLabel" destination="vMY-te-IYf" id="dbe-iN-wRz"/>
+                <outlet property="selectionBtn" destination="9xT-fB-4FA" id="Lpk-Na-BeG"/>
             </connections>
             <point key="canvasLocation" x="-156" y="7"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="circle" catalog="system" width="128" height="123"/>
         <image name="default_image" width="512" height="512"/>
+        <image name="radio_off" width="512" height="512"/>
     </resources>
 </document>

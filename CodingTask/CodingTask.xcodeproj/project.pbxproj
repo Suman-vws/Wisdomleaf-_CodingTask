@@ -21,6 +21,7 @@
 		C576868A29F5068D00ED057F /* ListNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C576868929F5068D00ED057F /* ListNavigationController.swift */; };
 		C576868D29F5108900ED057F /* NetworkServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C576868C29F5108900ED057F /* NetworkServiceProvider.swift */; };
 		C576868F29F515C700ED057F /* UIView+NetworkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C576868E29F515C700ED057F /* UIView+NetworkActivity.swift */; };
+		C58BDCD829F648A1001CBB94 /* DialogBoxPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58BDCD729F648A1001CBB94 /* DialogBoxPopupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		C576868929F5068D00ED057F /* ListNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNavigationController.swift; sourceTree = "<group>"; };
 		C576868C29F5108900ED057F /* NetworkServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProvider.swift; sourceTree = "<group>"; };
 		C576868E29F515C700ED057F /* UIView+NetworkActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NetworkActivity.swift"; sourceTree = "<group>"; };
+		C58BDCD729F648A1001CBB94 /* DialogBoxPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogBoxPopupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 		C576867829F5003F00ED057F /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C58BDCD629F6485E001CBB94 /* Views */,
 				C576868929F5068D00ED057F /* ListNavigationController.swift */,
 				C576866729F3AE6800ED057F /* ViewController.swift */,
 				C576867A29F5006800ED057F /* Table Cells */,
@@ -153,6 +156,14 @@
 				C576868C29F5108900ED057F /* NetworkServiceProvider.swift */,
 			);
 			path = "Network Services";
+			sourceTree = "<group>";
+		};
+		C58BDCD629F6485E001CBB94 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C58BDCD729F648A1001CBB94 /* DialogBoxPopupViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C576868F29F515C700ED057F /* UIView+NetworkActivity.swift in Sources */,
+				C58BDCD829F648A1001CBB94 /* DialogBoxPopupViewController.swift in Sources */,
 				C576868529F501A100ED057F /* ProductsViewModel.swift in Sources */,
 				C576868A29F5068D00ED057F /* ListNavigationController.swift in Sources */,
 				C576867D29F5009500ED057F /* ItemsTableViewCell.swift in Sources */,
