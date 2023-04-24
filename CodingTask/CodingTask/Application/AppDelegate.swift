@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = navVC
             window?.makeKeyAndVisible()
         }
+        //pausing for 5sec in splash screen
+        sleep(5)
         return true
     }
 

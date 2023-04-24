@@ -91,8 +91,10 @@ class ViewController: UIViewController {
     }
     
     @objc private func refreshProductListData(){
-        self.resetPageNumber()
-        self.getProductsData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.resetPageNumber()
+            self.getProductsData()
+        }
     }
 }
 
