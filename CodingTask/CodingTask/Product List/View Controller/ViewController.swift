@@ -26,7 +26,7 @@ class ViewController: UIViewController {
                 self.view.showActivity()
             case .loaded(data: let data):
                 self.view.hideActivity()
-                if let listData = data as? [Product], !listData.isEmpty{
+                if let listData = data as? [ProductUIModel], !listData.isEmpty{
                     self.arrListData = listData
                     self.tableView.reloadData()
                 }
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     
     private let KProductListDataPageSize = 10
     private var pageNumber = 1
-    private var arrListData: [Product] = []
+    private var arrListData: [ProductUIModel] = []
     
     @IBOutlet weak var tableView: UITableView!
     private let productCellReuseId = "ItemsTableViewCell"
@@ -78,6 +78,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: productCellReuseId, for: indexPath) as! ItemsTableViewCell
+        cell.updateItemCellWith(productModel: arrListData[indexPath.item])
         cell.selectionStyle = .none
         return cell
     }

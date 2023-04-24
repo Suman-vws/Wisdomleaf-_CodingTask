@@ -26,11 +26,18 @@ class ListViewModel {
             DispatchQueue.main.async {
                 switch result {
                     case .success(let products):
-                    self.observableState.value = .loaded(data: products ?? [])
+                    let arrProducts = self.transformProductsListDataIntoUIModelArray(products: products ?? [])
+                    self.observableState.value = .loaded(data: arrProducts)
                     case .failure(let error):
                         self.observableState.value = .error(type: error)
                 }
             }
+        }
+    }
+    
+    private func transformProductsListDataIntoUIModelArray(products: [Product]) -> [ProductUIModel]{
+        return products.map { (product) -> ProductUIModel in
+            return ProductUIModel.init(title: product.title, description: product.description, imageUrlString: product.thumbnail)
         }
     }
 }

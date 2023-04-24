@@ -10,7 +10,6 @@ import Foundation
 struct ProductListResult: Codable {
     let products: [Product]?
     let total: Int?
-    //, skip, limit
     
     enum CodingKeys: String, CodingKey {
         case products
@@ -46,7 +45,6 @@ struct Product: Codable {
 
 struct ProductUIModel {
     let title, description: String?
-    let thumbnail: String?
-    let images: [String]?
+    let imageUrlString: String?
     var isSelected: Bool = false
 }
